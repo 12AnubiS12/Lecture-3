@@ -2,6 +2,33 @@
 <html>
 <head>
 <title>Page Title</title>
+<script>
+    function allowDrop(ev) {
+    ev.preventDefault();
+    }
+    function dragStart(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+    }
+    function dragDrop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+    }
+    </script>
+
+<style>
+    .divfirst {
+    width: 250px;
+    height: 150px;
+    padding: 10px;
+    border: 1px solid black;
+    background-color: #F5F5F5;
+    }
+    p {
+    font-size:20px;
+    font-weight:bold;
+    }
+    </style>
 </head>
 <body>
 
@@ -54,5 +81,14 @@
   }
 </script>
 
+
+<p>Image Drag and Drop Demo</p>
+<div class="divfirst" ondrop="dragDrop(event)" ondragover="allowDrop(event)">
+<img id="drag1"
+src="https://th.bing.com/th/id/OIP.V6waM-05f7F22PqZA_EAhQHaHa?w=201&h=201&c=7&r=0&o=5&pid=1.7" draggable="true"
+ondragstart="dragStart(event)" width="250" height="150"></div>
+<br>
+<div     class= "divfirst"ondrop="dragDrop(event)"
+ondragover="allowDrop(event)"></div>
 </body>
 </html>
